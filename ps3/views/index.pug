@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  if aStr
+    h1= 'In the words of Joey'
+    p #{aStr}
+  else
+    p Input string: #{inputStr}
+    p String length: #{len}
