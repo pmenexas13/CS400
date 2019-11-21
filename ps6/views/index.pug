@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 #{title}
+  p You chose #{name} as your favorite starter pokemon!!!
+
+  p #{name}'s evolution chain is #{evol1} -> #{evol2} -> #{evol3}
+  br
+  a(href='/ps6') Try a new pokemon!
+  br
+  if cache
+    p Data was retrieved from cache.
+  else
+    p Data was not retrieved from cache.
+

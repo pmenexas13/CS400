@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 #{title}
+    p Which starter pokemon is your favorite?
+    br
+    p Choose which one to see the pokemon's evolution chain!
+
+
+    form(action='/ps6', method='POST')
+        select(name='pokemonName')
+            option(value='Charmander' selected=) Charmander
+            option(value='Bulbasaur' selected=) Bulbasaur
+            option(value='Squirtle' selected=) Squirtle
+            option(value='Pichu' selected=) Pichu
+        input(type='submit', value='Submit')
