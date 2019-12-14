@@ -38,7 +38,7 @@ router.route('/')
 
         let in_database;
 
-        mongo.collection('pokemon').findOne({name: pokemon}, (err, user) => {
+        mongo.collection('pokedex').findOne({name: pokemon}, (err, user) => {
             if (err) {
                 // handle error
                 console.log(`Error occured`);
@@ -47,11 +47,13 @@ router.route('/')
 
                 in_database = true;
 
-                let poke_details = (mongo.collection('pokemon').findOne({name: pokemon}, {evol1:1, evol2:1, evol3:1}));
+                let poke_details = (mongo.collection('pokedex').findOne({name: pokemon}, {evol1:1, evol2:1, evol3:1}));
+
+                console.log(poke_details)
 
                 poke_details.then(function(result) {
 
-                    res.render('index',
+                    res.json(
                         {
                             title: 'CS400 Problem Set 6',
                             name: pokemon,
@@ -75,14 +77,14 @@ router.route('/')
 
                     const result = JSON.parse(body);
 
-                    mongo.collection('pokemon').insertOne({name: pokemon,
+                    mongo.collection('pokedex').insertOne({name: pokemon,
                                                                 evol1: result.chain.species.name,
                                                                 evol2: result.chain.evolves_to[0].species.name,
                                                                 evol3: result.chain.evolves_to[0].evolves_to[0].species.name,
                                                                 }, function (err,r){
                     });
 
-                    res.render('index',
+                    res.json(
                         {
                             title: 'CS400 Problem Set 6',
                             name: pokemon,
